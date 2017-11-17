@@ -97,7 +97,7 @@ else
 	IDFPATH=java/res/idfsSO
 fi;
 
-rm -rf  "classification_$filename""_$EMOTION"
+#rm -rf  "classification_$filename""_$EMOTION"
 
 #Creating the format to give at python files.
 if  [ "$DELIMITER" = 'sc' ] ; then 
@@ -118,14 +118,14 @@ python model.py
 cd ../..
 cp python/CalculatePoliteAndImpolite/textsPoliteAndImpolite.csv  "classification_$filename""_$EMOTION"/ElaboratedFiles/
 
-rm python/CalculatePoliteAndImpolite/textsPoliteAndImpolite.csv
+#rm python/CalculatePoliteAndImpolite/textsPoliteAndImpolite.csv
 
 cd python/CalculateMoodModality
 python  moodAndModality.py 
 cd ../.. 
 
 cp  python/CalculateMoodModality/textsMoodAndModality.csv  "classification_$filename""_$EMOTION"/ElaboratedFiles/
-rm  python/CalculateMoodModality/textsMoodAndModality.csv
+#rm  python/CalculateMoodModality/textsMoodAndModality.csv
 
 #copy the 
 mkdir -p  "classification_$filename""_$EMOTION"/idfs
@@ -168,7 +168,7 @@ mv   "classification_$filename""_$EMOTION"/features-$EMOTION.csv r/Liblinear/
 modelName=${MODEL##*/}
 
 cd r/Liblinear
-rm -rf output/Results_$EMOTION
+#rm -rf output/Results_$EMOTION
 
 if [ "$HASLABEL" = '-L' ] ; then 
 	 Rscript classification.R Results_$EMOTION $modelName features-$EMOTION.csv 1 $EMOTION
@@ -179,16 +179,16 @@ cd ../..
 
 mv r/Liblinear/output/Results_$EMOTION/*   "classification_$filename""_$EMOTION"/
 
-rm -r r/Liblinear/$modelName
-rm -r r/Liblinear/output/Results_$EMOTION
+#rm -r r/Liblinear/$modelName
+#rm -r r/Liblinear/output/Results_$EMOTION
 
-rm -r "classification_$filename""_$EMOTION"/n-grams
-rm -r "classification_$filename""_$EMOTION"/idfs
-rm -r "classification_$filename""_$EMOTION"/ElaboratedFiles
-rm "classification_$filename""_$EMOTION"/features-bigrams_1.csv
-rm "classification_$filename""_$EMOTION"/features-bigrams_2.csv
-rm "classification_$filename""_$EMOTION"/features-SenPolImpolMoodModality.csv
-rm "classification_$filename""_$EMOTION"/features-unigrams_1.csv
-rm "classification_$filename""_$EMOTION"/features-unigrams_2.csv
-rm "classification_$filename""_$EMOTION"/features-wordnet.csv
+#rm -r "classification_$filename""_$EMOTION"/n-grams
+#rm -r "classification_$filename""_$EMOTION"/idfs
+#rm -r "classification_$filename""_$EMOTION"/ElaboratedFiles
+#rm "classification_$filename""_$EMOTION"/features-bigrams_1.csv
+#rm "classification_$filename""_$EMOTION"/features-bigrams_2.csv
+#rm "classification_$filename""_$EMOTION"/features-SenPolImpolMoodModality.csv
+#rm "classification_$filename""_$EMOTION"/features-unigrams_1.csv
+#rm "classification_$filename""_$EMOTION"/features-unigrams_2.csv
+#rm "classification_$filename""_$EMOTION"/features-wordnet.csv
 # rm "classification_$filename""_$EMOTION"/features-"$EMOTION".csv
